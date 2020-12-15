@@ -18,7 +18,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import App from "./components/App";
 import {AuthProvider} from './components/Firebase/context';
-
+import 'semantic-ui-css/semantic.min.css'
 // import UserProvider from './components/Firebase';
 
 // import Firebase, { FirebaseContext } from "./components/Firebase";

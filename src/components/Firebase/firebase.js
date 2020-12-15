@@ -22,7 +22,7 @@ export default app;
 export const auth = app.auth();
 export const db =firebase.firestore();
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
-export const FacebookProvider = new firebase.auth.FacebookAuthProvider();
+// export const FacebookProvider = new firebase.auth.FacebookAuthProvider();
 
 // class Firebase {
 //   constructor() {

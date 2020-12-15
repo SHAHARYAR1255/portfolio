@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
   const sendVerificationEmail = (email) => {
     auth.currentUser
       .sendEmailVerification({
-        url: "http://localhost:3000",
+        url: "http://localhost:3000/account",
       })
       .then(function () {
         console.log("email sent check your inbox");
@@ -48,19 +48,19 @@ export function AuthProvider({ children }) {
       })
       .catch((err) => setError(err));
   };
-  const signInWithFacebook = () => {  
-    auth
-      .signInWithPopup(FacebookProvider)
-      .then((result) => {
-        const token = result.credential.accessToken;
-        console.log(token, "token");
-        const user = result.user;
-        console.log(user, "user");
-        generateUserDocument(user.email, false, user.displayName);
-        console.log(currentUser);
-      })
-      .catch((err) => setError(err));
-  };
+  // const signInWithFacebook = () => {  
+  //   auth
+  //     .signInWithPopup(FacebookProvider)
+  //     .then((result) => {
+  //       const token = result.credential.accessToken;
+  //       console.log(token, "token");
+  //       const user = result.user;
+  //       console.log(user, "user");
+  //       generateUserDocument(user.email, false, user.displayName);
+  //       console.log(currentUser);
+  //     })
+  //     .catch((err) => setError(err));
+  // };
   const generateUserDocument = (email, isAdmin, username) => {
     const roles = [ROLES.USER];
     if (isAdmin) {
@@ -124,7 +124,7 @@ export function AuthProvider({ children }) {
     updatePassword,
     generateUserDocument,
     signInWithGoogle,
-    signInWithFacebook,
+    // signInWithFacebook,
     sendVerificationEmail,
   };
 

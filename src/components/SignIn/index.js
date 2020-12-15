@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useAuth } from "../Firebase/context";
 import { useHistory } from "react-router-dom";
-import { VerificationEmailComponent } from "../SignUp";
+import VerifyEmailComp  from "../SignUp/EmailVerifyComp";
 
 function SignInPage() {
   const history = useHistory();
   const { login, currentUser } = useAuth();
-  const [email, setEmail] = useState('');
-  const [passwordOne, setPasswordOne] = useState('');
+  const [email, setEmail] = useState("");
+  const [passwordOne, setPasswordOne] = useState("");
   const [error, setError] = useState();
   const [verificationComp, setVerificationComp] = useState(false);
   const onSubmit = async (e) => {
@@ -32,7 +32,7 @@ function SignInPage() {
   };
   const isInvalid = email === "" || passwordOne === "";
   if (verificationComp) {
-    return <VerificationEmailComponent />;
+    return <VerifyEmailComp email={email} />;
   } else {
     return (
       <div>
