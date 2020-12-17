@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../Firebase/firebase";
-import { Header, Transition, Image } from "semantic-ui-react";
+import { Header, Segment, Image } from "semantic-ui-react";
 
 export default function HomePage() {
   // const classes = useStyles();
@@ -74,12 +74,9 @@ export default function HomePage() {
     //   </Grid>
     // </Grid>
     loading ? (
-      <Transition visible={loading} animation="scale">
-        <Image
-          size="small"
-          src="https://react.semantic-ui.com/images/leaves/1.png"
-        />
-      </Transition>
+      <Segment loading>
+      <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+    </Segment>
     ) : (
       <div className="ui container">
         <Header textAlign="center" as="h1" color="purple">
