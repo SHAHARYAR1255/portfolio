@@ -9,6 +9,7 @@ import {
   Image,
   Label,
   Divider,
+  Loader,
 } from "semantic-ui-react";
 import React, { useEffect, useState } from "react";
 
@@ -94,7 +95,7 @@ const ShowDetails = ({ data }) => {
       <TableBody>
         {data.map((da) => {
           return (
-            <Table.Row>
+            <Table.Row key={da.id}>
               <Table.Cell>
                 <Label ribbon>{da.name}</Label>
               </Table.Cell>
@@ -109,10 +110,9 @@ const ShowDetails = ({ data }) => {
     );
   } else {
     return (
-      <TableBody>
-        <Segment loading>
-          <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
-        </Segment>
+      <TableBody loading="true">
+          {/* <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" /> */}
+          <Loader active inline />
       </TableBody>
     );
   }

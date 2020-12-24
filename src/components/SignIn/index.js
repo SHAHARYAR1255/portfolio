@@ -10,6 +10,8 @@ import {
   Header,
   Segment,
   Message,
+  Icon,
+  Loader,
 } from "semantic-ui-react";
 
 function SignInPage() {
@@ -18,6 +20,8 @@ function SignInPage() {
   const [email, setEmail] = useState("");
   const [passwordOne, setPasswordOne] = useState("");
   const [error, setError] = useState();
+  const [checkbox, setCheckbox] = useState(false);
+  const [tick, setTick] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +49,16 @@ function SignInPage() {
         setError(err);
       });
   };
+
   const isInvalid = email === "" || passwordOne === "";
+
+  const robot = (e) => {
+    e.preventDefault();
+    setCheckbox(!checkbox);
+    setTimeout(() => {
+      setTick(true);
+    }, 2000);
+  };
 
   return (
     <div>
@@ -78,12 +91,21 @@ function SignInPage() {
               />
 
               <Segment clearing>
-                <Checkbox
-                  verticalAlign="middle"
-                  size="large"
-                  floated="left"
-                  label="Not a Robot"
-                />
+                {!checkbox ? (
+                  <Checkbox
+                    size="large"
+                    floated="left"
+                    label="Not a Robot"
+                    value={checkbox}
+                    onChange={(e) => robot(e)}
+                  />
+                ) : tick ? (
+                  <>
+                    <Icon name="check" color="green" /> <span>Not a Robot</span>
+                  </>
+                ) : (
+                  <Loader active inline />
+                )}
                 <Button
                   floated="right"
                   color="blue"

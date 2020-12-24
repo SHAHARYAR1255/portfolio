@@ -12,7 +12,7 @@ import {
   Header,
   Checkbox,
   Segment,
-  Message,
+  Message,Icon, Loader,
 } from "semantic-ui-react";
 
 const SignUpPage = () => <SignUpFormBase />;
@@ -25,6 +25,8 @@ function SignUpFormBase() {
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [error, setError] = useState();
+  const [tick, setTick] = useState(false);
+  const [checkbox, setCheckbox] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +41,9 @@ function SignUpFormBase() {
       })
       .catch((error) => {
         console.log(error);
-        if(error.code === 'auth/email-already-in-use'){error = {...error , message: "User is Already Registered!"}}
+        if (error.code === "auth/email-already-in-use") {
+          error = { ...error, message: "User is Already Registered!" };
+        }
         setError(error);
       });
   };
@@ -51,6 +55,15 @@ function SignUpFormBase() {
     email !== "" &&
     username !== "";
 
+    const robot = (e) => {
+      e.preventDefault();
+      setCheckbox(!checkbox);
+      setTimeout(() => {
+        setTick(true);
+      }, 2000);
+    };
+  
+
   return (
     <Grid centered columns={2}>
       <Grid.Column>
@@ -59,6 +72,7 @@ function SignUpFormBase() {
           textAlign="center"
           content="Create your account"
           style={{ marginBottom: "16px" }}
+          verticalAllign="middle"
         ></Header>
         <Segment>
           <Form size="large">
@@ -98,7 +112,21 @@ function SignUpFormBase() {
             />
 
             <Segment clearing>
-              <Checkbox size="large" floated="left" label="Not a Robot" />
+              {!checkbox ? (
+                <Checkbox
+                  size="large"
+                  floated="left"
+                  label="Not a Robot"
+                  value={checkbox}
+                  onChange={(e) => robot(e)}
+                />
+              ) : tick ? (
+                <>
+                  <Icon name="check" color="green" /> <span>Not a Robot</span>
+                </>
+              ) : (
+                <Loader active inline />
+              )}{" "}
               <Button
                 floated="right"
                 color="blue"
