@@ -19,7 +19,7 @@ function EmailVerifyComp({ email }) {
     if (seconds === 0) {
       setTimer(!timer);
     }
-  }, [seconds]);
+  }, [seconds, timer]);
 
   const resendEmail = (e) => {
     e.preventDefault();

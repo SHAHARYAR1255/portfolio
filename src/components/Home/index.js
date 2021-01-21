@@ -9,7 +9,7 @@ export default function HomePage() {
   // //     setSpacing(Number(event.target.value));
   // //   };
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [maal, setMaal] = useState([]);
 
   useEffect(() => {
@@ -29,12 +29,10 @@ export default function HomePage() {
           console.log(maal, "maala");
         }
         console.log(projects);
-      } catch {
-        err => setError(err)
-      }
-    };
+      } catch {}
+    }
     fetchProjects();
-  }, []);
+  }, [maal]);
 
   return (  
     loading ? (
@@ -55,7 +53,7 @@ export default function HomePage() {
               return (
                 <div key={index} class="card">
                   <div class="blurring dimmable image">
-                    <img src={maa.image} />
+                    <img src={maa.image} alt={maa.name} />
                   </div>
                   <div class="content">
                     <a href={maa.link} class="header">{maa.name}</a>

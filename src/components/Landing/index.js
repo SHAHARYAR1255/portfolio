@@ -34,12 +34,12 @@ function LandingPage() {
         })
         .catch((err) => {
           setError(err);
-          console.log(err, "err");
+          console.log(error, "err");
         });
     };
 
     fetchRepos();
-  }, []);
+  });
 
   return (
     <div>

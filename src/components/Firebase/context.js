@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth, db, GoogleProvider, FacebookProvider } from "./firebase";
+import { auth, db, GoogleProvider } from "./firebase";
 import * as ROLES from "../../constants/roles";
 
 const AuthContext = React.createContext();
@@ -126,6 +126,7 @@ export function AuthProvider({ children }) {
     signInWithGoogle,
     // signInWithFacebook,
     sendVerificationEmail,
+    error
   };
 
   return (

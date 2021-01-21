@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import * as ROUTES from "../../constants/routes";
+// import * as ROUTES from "../../constants/routes";
 // import {withFirebase} from '../Firebase/context';
 // import { compose } from 'recompose';
 import { useAuth } from "../Firebase/context";
@@ -19,7 +19,7 @@ const SignUpPage = () => <SignUpFormBase />;
 
 function SignUpFormBase() {
   const history = useHistory();
-  const { signup, signInWithGoogle, sendVerificationEmail, logout } = useAuth();
+  const { signup, sendVerificationEmail } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [passwordOne, setPasswordOne] = useState("");
