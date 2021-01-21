@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { useHistory } from "react-router-dom";
-import { Container, Header, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
+import { Container, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
 
 const NavBarMobile = ({
   children,

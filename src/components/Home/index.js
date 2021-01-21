@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../Firebase/firebase";
-import {Grid, Header, Segment, Image, Container } from "semantic-ui-react";
+import {Grid, Header, Segment, Image } from "semantic-ui-react";
 
 export default function HomePage() {
   // const classes = useStyles();
@@ -29,7 +29,9 @@ export default function HomePage() {
           console.log(maal, "maala");
         }
         console.log(projects);
-      } catch {}
+      } catch {
+        err => setError(err)
+      }
     };
     fetchProjects();
   }, []);
