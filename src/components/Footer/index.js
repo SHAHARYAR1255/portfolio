@@ -1,9 +1,11 @@
 import React from "react";
-import { Container, Icon, Popup } from "semantic-ui-react";
+import { Container, Icon, Popup, Header } from "semantic-ui-react";
 
 function Footer() {
   return (
     <Container background-color="red" textAlign="center">
+                <Header as="h1" color="red" background-color="black" textAlign="center"><b><i>Site In Making  </i></b></Header>
+
       <p color="purple">POWERED BY SHAHARYAR MALIK</p>
       <Popup
         content="face book off"

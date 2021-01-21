@@ -14,7 +14,7 @@ export const AccountProtection = () => {
 };
 function AccountPage() {
   const history = useHistory();
-  const { currentUser, generateUserDocument } = useAuth();
+  const { currentUser, generateUserDocument, signOut } = useAuth();
 
   const { displayName, email, emailVerified } = currentUser;
 
@@ -48,7 +48,7 @@ function AccountPage() {
       <h3>{<p>displayName : </p> && displayName}</h3>
       <h3>{<p>email : </p> && email}</h3>
       <h3>{!emailVerified && <p>email not verified</p>}</h3>
-      <h3>{emailVerified && <p>email verified</p>}</h3>
+      <h3>{emailVerified && <><p>email verified</p> <Button onClick={signOut()}>SignOut</Button></>}</h3>
     </Box>
   );
 }

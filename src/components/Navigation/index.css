@@ -1,7 +1,20 @@
-import _ from "lodash";
+/* .navigation{
+    background-image: url('https://freellustrustrations.s3.us-east-2.amazonaws.com/free-images/freeimg_61877018freejpg850.jpg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 850px;} */
+
+    import _ from "lodash";
 import React, { Component } from "react";
-import { useHistory } from "react-router-dom";
-import { Container, Header, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
+import { render } from "react-dom";
+import {
+  Container,
+  Icon,
+  Image,
+  Menu,
+  Sidebar,
+  Responsive
+} from "semantic-ui-react";
 
 const NavBarMobile = ({
   children,
@@ -9,7 +22,7 @@ const NavBarMobile = ({
   onPusherClick,
   onToggle,
   rightItems,
-  visible,
+  visible
 }) => (
   <Sidebar.Pushable>
     <Sidebar
@@ -34,9 +47,7 @@ const NavBarMobile = ({
           <Icon name="sidebar" />
         </Menu.Item>
         <Menu.Menu position="right">
-          {_.map(rightItems, (item) => (
-            <Menu.Item {...item} />
-          ))}
+          {_.map(rightItems, item => <Menu.Item {...item} />)}
         </Menu.Menu>
       </Menu>
       {children}
@@ -44,30 +55,25 @@ const NavBarMobile = ({
   </Sidebar.Pushable>
 );
 
-const NavBarDesktop = ({ leftItems, rightItems }) => {
-  const history = useHistory();
-  return (
-    <Menu fixed="top" inverted>
-      <Menu.Item>
-        <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
-      </Menu.Item>
-      {_.map(leftItems, item => <Menu.Item {...item} onClick={() => history.push(item.click)} />)}
-      
-      <Menu.Menu position="right">
-        {_.map(rightItems, (item) => (
-          <Menu.Item {...item} onClick={() => history.push(item.click)} />
-        ))}
-      </Menu.Menu>
-    </Menu>
-  );
-};
+const NavBarDesktop = ({ leftItems, rightItems }) => (
+  <Menu fixed="top" inverted>
+    <Menu.Item>
+      <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
+    </Menu.Item>
+    {_.map(leftItems, item => <Menu.Item {...item} />)}
+    <Menu.Menu position="right">
+      {_.map(rightItems, item => <Menu.Item {...item} />)}
+    </Menu.Menu>
+  </Menu>
+);
+
 const NavBarChildren = ({ children }) => (
   <Container style={{ marginTop: "5em" }}>{children}</Container>
 );
 
 class NavBar extends Component {
   state = {
-    visible: false,
+    visible: false
   };
 
   handlePusher = () => {
@@ -84,7 +90,8 @@ class NavBar extends Component {
 
     return (
       <div>
-        {/* <NavBarMobile
+        <Responsive {...Responsive.onlyMobile}>
+          <NavBarMobile
             leftItems={leftItems}
             onPusherClick={this.handlePusher}
             onToggle={this.handleToggle}
@@ -92,32 +99,30 @@ class NavBar extends Component {
             visible={visible}
           >
             <NavBarChildren>{children}</NavBarChildren>
-          </NavBarMobile> */}
-        {/* <Responsive minWidth={Responsive.onlyTablet.minWidth}> */}
-        <NavBarDesktop leftItems={leftItems} rightItems={rightItems} />
-        <NavBarChildren>{children}</NavBarChildren>
-        {/* </Responsive> */}
+          </NavBarMobile>
+        </Responsive>
+        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+          <NavBarDesktop leftItems={leftItems} rightItems={rightItems} />
+          <NavBarChildren>{children}</NavBarChildren>
+        </Responsive>
       </div>
     );
   }
 }
+
 const leftItems = [
-  { as: "a", content: "Home", key: "home", click:"/home" },
-  { as: "a", content: "Account", key: "users", click:'/account' },
-  { as: "a", content: "Repos", key: "feature", click:'/landing' },
+  { as: "a", content: "Home", key: "home" },
+  { as: "a", content: "Users", key: "users" }
 ];
 const rightItems = [
-  { as: "a", content: "Sign In", key: "login", click:"/signIn" },
-  { as: "a", content: "Sign Up", key: "register",  click:"/signUp" },
-  { as: "a", content: "Forgot Password", key: "forget",  click:"/pw-forget" },
+  { as: "a", content: "Login", key: "login" },
+  { as: "a", content: "Register", key: "register" }
 ];
 
 const App = () => (
-  <>
   <NavBar leftItems={leftItems} rightItems={rightItems}>
-    {/* <Image src="https://react.semantic-ui.com/assets/images/wireframe/paragraph.png" /> */}
+    <Image src="https://react.semantic-ui.com/assets/images/wireframe/paragraph.png" />
   </NavBar>
-  </>
 );
 
-export default App;
+render(<App />, document.getElementById("root"));

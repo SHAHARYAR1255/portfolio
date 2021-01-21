@@ -22,6 +22,7 @@ function PasswordForgetPage() {
   return (
     <div>
       <form onSubmit={onSubmit}>
+        <label for="text"> Email : </label>
         <input
           type="text"
           value={email}

@@ -137,6 +137,7 @@ function SignInPage() {
           </Message>
         </Grid.Column>
       </Grid>
+      {/* <img src="https://firebasestorage.googleapis.com/v0/b/roadtofirebase-ae0cc.appspot.com/o/drawkit-server-woman-monochrome-400px.png?alt=media&token=4f5a43b4-eb8f-402a-a928-c512f4325168" alt="drawkit" /> */}
     </div>
   );
 }

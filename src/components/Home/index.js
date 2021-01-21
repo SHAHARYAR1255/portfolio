@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../Firebase/firebase";
-import { Header, Segment, Image } from "semantic-ui-react";
+import {Grid, Header, Segment, Image, Container } from "semantic-ui-react";
 
 export default function HomePage() {
   // const classes = useStyles();
@@ -8,7 +8,7 @@ export default function HomePage() {
   // //   const handleChange = (event) => {
   // //     setSpacing(Number(event.target.value));
   // //   };
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [maal, setMaal] = useState([]);
 
@@ -34,51 +34,14 @@ export default function HomePage() {
     fetchProjects();
   }, []);
 
-  return (
-    // <Grid container className={classes.root} spacing={5}>
-    //   <Grid item xs={12}>
-    //     <Grid container justify="center" spacing={9}>
-    //       { maal.map((value) => (
-    //         <Grid key={value.id} item>
-    //           {/* <Paper variant="outlined" className={classes.paper} /> */}
-    //           <Card className={classes.root}>
-    //             <CardHeader />
-    //             <CardMedia />
-    //             <CardContent>
-    //               <Typography
-    //                 className={classes.title}
-    //                 color="textSecondary"
-    //                 gutterBottom
-    //               >
-    //                 {value.name}{" "}
-    //               </Typography>
-    //               <Typography variant="h5" component="h2">
-    //                 be{bull}nev{bull}o{bull}lent
-    //               </Typography>
-    //               <Typography className={classes.pos} color="textSecondary">
-    //                 adjective
-    //               </Typography>
-    //               <Typography variant="body2" component="p">
-    //                 well meaning and kindly.
-    //                 <br />
-    //                 {'"a benevolent smile"'}
-    //               </Typography>
-    //             </CardContent>
-    //             <CardActions>
-    //               <Button size="small">Learn More</Button>
-    //             </CardActions>
-    //           </Card>
-    //         </Grid>
-    //       ))}
-    //     </Grid>
-    //   </Grid>
-    // </Grid>
+  return (  
     loading ? (
       <Segment loading>
-      <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+      <Image src='https://react.semantic-ui.comhttps://firebasestorage.googleapis.com/v0/b/roadtofirebase-ae0cc.appspot.com/o/drawkit-server-woman-monochrome-400px.png?alt=media&token=4f5a43b4-eb8f-402a-a928-c512f4325168' />
     </Segment>
     ) : (
       <div className="ui container">
+          <Header as="h1" color="red" background-color="black" textAlign="center"><b><i>Site In Making  </i></b></Header>
         <Header textAlign="center" as="h1" color="purple">
           My Projects
         </Header>
@@ -93,16 +56,29 @@ export default function HomePage() {
                     <img src={maa.image} />
                   </div>
                   <div class="content">
-                    <a class="header">{maa.name}</a>
+                    <a href={maa.link} class="header">{maa.name}</a>
                     <div class="meta">
-                      <span class="date">{maa.link}</span>
+                      <span class="date"><a href={maa.link}>{maa.link}</a></span>
                     </div>
                   </div>
                 </div>
               );
             })}
         </div>
-        <div className="ui container"></div>
+        <hr />
+        
+        <Grid>
+    <Grid.Row>
+      <Grid.Column textAlign="center" verticalAlign="middle" width={8}>
+          <Header as='h2' image='/images/icons/school.png' content='Learn More' />
+      </Grid.Column>
+      <Grid.Column width={8}>
+        <Image src='https://firebasestorage.googleapis.com/v0/b/roadtofirebase-ae0cc.appspot.com/o/drawkit-server-woman-monochrome-400px.png?alt=media&token=4f5a43b4-eb8f-402a-a928-c512f4325168' />
+      </Grid.Column>
+    </Grid.Row>
+
+  
+  </Grid>
       </div>
     )
   );
